@@ -2,13 +2,13 @@
 API to manage students and their grades
 
 # Vorwort:
-
 Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten verwalten. Kommuniziert wird dafür über HTTP im JSON-Format. Bitte halten Sie die in Beispielen gegebenen Formatierungen ein, um keine Fehler zu erhalten.
 Der Standard-Port für die API ist 8974.
 Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler verursachen.
 
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
+'/api/student'
 Um Daten abzufragen, benutze die REQUEST-Methode GET, um Daten zu senden benutze die REQUEST-Methode POST. Welche Daten du erhalten, erstellen, bearbeiten oder löschen willst, gibst du im REQUEST-BODY im JSON-Format an (, welches dir in den jeweiligen Beispielen erklärt wird).
 
 ## Schülerdaten erstellen (POST-REQUEST):
