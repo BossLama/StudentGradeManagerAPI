@@ -1,16 +1,17 @@
 # StudentGradeManagerAPI
 API to manage students and their grades
 
-#Vorwort:
+# Vorwort:
+
 Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten verwalten. Kommuniziert wird dafür über HTTP im JSON-Format. Bitte halten Sie die in Beispielen gegebenen Formatierungen ein, um keine Fehler zu erhalten.
 Der Standard-Port für die API ist 8974.
 Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler verursachen.
 
-#Schülerdaten:
+# Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
 Um Daten abzufragen, benutze die REQUEST-Methode GET, um Daten zu senden benutze die REQUEST-Methode POST. Welche Daten du erhalten, erstellen, bearbeiten oder löschen willst, gibst du im REQUEST-BODY im JSON-Format an (, welches dir in den jeweiligen Beispielen erklärt wird).
 
-##Schülerdaten erstellen (POST-REQUEST):
+## Schülerdaten erstellen (POST-REQUEST):
 Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BODY angeben:
 -	action 	(Ausführende Aktion, hier „create“)
 -	firstname	(Vornamen des Schülers)
@@ -19,7 +20,7 @@ Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BOD
 Bei erfolgreichem Erstellen eines Schülers erhält man folgenden RESPONSE:
 
 
-##Überarbeiten/Verändern von Schülerdaten (POST-REQUEST):
+## Überarbeiten/Verändern von Schülerdaten (POST-REQUEST):
 Um Schülerdaten verändern zu können, müssen folgende Attribute im REQUEST-BODY angegeben werden:
 -	action	(Auszuführende Aktion, hier „update“)
 -	student-id	(ID des Schülers)
@@ -33,7 +34,7 @@ Folgende Attribute können verändert werden: (Übernehme diese Namen in ‚data
 Bei erfolgreichem Überarbeiten der Daten in der Datenbank erhalten Sie folgenden RESPONSE-CODE: (siehe Abbildung 3)
 
 
-#Löschen von Schülerdaten (POST-REQUEST):
+## Löschen von Schülerdaten (POST-REQUEST):
 Um Schülerdaten löschen zu können, werden folgende 2 Attribute benötigt:
 -	action	(Auszuführende Aktion, hier „delete“)
 -	student-id	(ID des zu löschenden Schülers)
@@ -42,7 +43,7 @@ Bei erfolgreichem Ausführen der Aktion erhalten Sie folgenden RESPONSE-CODE:
 (siehe Abbildung 3)
 
 
-#Einzelne Schülerdaten abfragen (GET-REQUEST):
+## Einzelne Schülerdaten abfragen (GET-REQUEST):
 Um einzelne Schülerdaten abzufragen, musst du dem Endpoint „student“ folgende Attribute übergeben (ACHTUNG: Bitte halte die unten angegebene Reinfolge ein):
 -	studentid	(Die ID des zu suchenden Schülers)
 ODER
@@ -52,7 +53,7 @@ bzw.
 
 Bei einer erfolgreichen REQUEST erhalten Sie folgenden RESPONSE im JSON-Format:
 
-##Liste aller Schüler einer Klasse abfragen (GET-REQUEST):
+## Liste aller Schüler einer Klasse abfragen (GET-REQUEST):
 Für das Abfragen einer Klassenliste gibt es zwei Möglichkeiten:
 
 1.	Unsortiert abfragen:
@@ -73,7 +74,7 @@ o	average	(Sortiert Liste nach Durchschnittsnote)
 
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
  
-#Notendaten:
+# Notendaten:
 Um mit Notendaten zu arbeiten, muss folgender Endpoint angesprochen werden:
 Der Endpoint erlaubt dir, Notendaten zu erstellen, zu verändern/überarbeiten und zu löschen (siehe jeweiliges Unterkapitel).
 
@@ -87,7 +88,7 @@ Für das Erstellen einer Note werden folgende Attribute benötigt:
 
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-CODE:
 
-##Überarbeiten/Verändern von Notendaten (POST-REQUEST):
+## Überarbeiten/Verändern von Notendaten (POST-REQUEST):
 Um Noten zu verändern, brauchen Sie folgende Attribute:
 -	action	(Auszuführende Aktion, hier update)
 -	grade-id	(ID der zu verändernden Note)
@@ -97,26 +98,26 @@ Um Noten zu verändern, brauchen Sie folgende Attribute:
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 
 
-##Löschen von Notendaten (POST-REQUEST):
+## Löschen von Notendaten (POST-REQUEST):
 Um Noten aus dem System zu löschen, werden folgende Attribute benötigt:
 -	action	(Auszuführende Aktion, hier „delete“)
 -	grade-id	(ID der zu löschenden Note)
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 
 
-##Bestimme Notendaten abfragen (GET-REQUEST):
+## Bestimme Notendaten abfragen (GET-REQUEST):
 Um eine GET-Request ausführen zu können, müssen Sie an folgenden Endpoint adressieren: 
 Wollen Sie Daten einer Note abfragen, geben Sie das Attribut „grade-id“ an:
 
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
  
-##Abfragen aller Noten eines Schülers (GET-REQUEST):
+## Abfragen aller Noten eines Schülers (GET-REQUEST):
 Um eine Liste aller Noten eines Schülers zu erhalten, müssen folgende Attribute angegeben werden:
 -	student-id		(ID des Schülers)
 
 Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
  
-#Fehler und Fehlerbehebung:
+# Fehler und Fehlerbehebung:
 
 CODE	ERROR-NAME	URSACHE	BEHEBUNG
 0	No-Error	Erfolgreiche Request	KEINE
@@ -132,7 +133,7 @@ CODE	ERROR-NAME	URSACHE	BEHEBUNG
 			
 			
 
-#Features in Zukunft:
+# Features in Zukunft:
 Folgende Features werden in Zukunft hinzugefügt:
 
 -	API-KEY
