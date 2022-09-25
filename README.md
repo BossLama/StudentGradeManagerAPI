@@ -8,7 +8,9 @@ Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler v
 
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
-'/api/student'
+
+` /api/student `
+
 Um Daten abzufragen, benutze die REQUEST-Methode GET, um Daten zu senden benutze die REQUEST-Methode POST. Welche Daten du erhalten, erstellen, bearbeiten oder löschen willst, gibst du im REQUEST-BODY im JSON-Format an (, welches dir in den jeweiligen Beispielen erklärt wird).
 
 ## Schülerdaten erstellen (POST-REQUEST):
@@ -17,8 +19,39 @@ Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BOD
 -	firstname	(Vornamen des Schülers)
 -	lastname	(Nachname des Schülers)
 -	classtag	(Klassenbezeichnung des Schülers) 
-Bei erfolgreichem Erstellen eines Schülers erhält man folgenden RESPONSE:
 
+```
+{
+  „action“:“create“,
+  „data“: [
+    {
+       „data-name“:“firstname“,
+       „data-value“:“Max“,
+     },
+     {
+       „data-name“:“lastname“,
+       „data-value“:“Mustermann“,
+     },
+     {
+       „data-name“:“classtag“,
+       „data-value“:“5A“,
+     }
+
+  ]
+} 
+```
+
+Bei erfolgreichem Erstellen eines Schülers erhält man folgenden RESPONSE:
+```
+{ 
+  „success“:“true“, 
+  „error“: { 
+     „name“:“Successful“, 
+    „message“:“There is no error“, 
+    „errorcode“:“0“ 
+}
+```
+(Abbildung 3)
 
 ## Überarbeiten/Verändern von Schülerdaten (POST-REQUEST):
 Um Schülerdaten verändern zu können, müssen folgende Attribute im REQUEST-BODY angegeben werden:
@@ -26,10 +59,28 @@ Um Schülerdaten verändern zu können, müssen folgende Attribute im REQUEST-BO
 -	student-id	(ID des Schülers)
 -	data-name	(Attribut, welches geändert werden soll)
 -	data-value	(Neuer Wert für das Attribut)
+
 Folgende Attribute können verändert werden: (Übernehme diese Namen in ‚data-name‘ um sie zu verändern)
 -	firstname	(Vorname des Schülers)
 -	lastname	(Nachname des Schülers)
 -	classtag	(Klassenbezeichnung des Schülers)
+
+```
+{
+  „action“:“update“,
+  „student-id“:“7623“,
+  „data“: [
+    {
+       „data-name“:“firstname“,
+       „data-value“:“Max“,
+     },
+     {
+       „data-name“:“lastname“,
+       „data-value“:“Mustermann“,
+     }
+  ]
+}
+```
 
 Bei erfolgreichem Überarbeiten der Daten in der Datenbank erhalten Sie folgenden RESPONSE-CODE: (siehe Abbildung 3)
 
@@ -38,6 +89,13 @@ Bei erfolgreichem Überarbeiten der Daten in der Datenbank erhalten Sie folgende
 Um Schülerdaten löschen zu können, werden folgende 2 Attribute benötigt:
 -	action	(Auszuführende Aktion, hier „delete“)
 -	student-id	(ID des zu löschenden Schülers)
+
+```
+{ 
+  „action“:“delete“,
+  „student-id“:“93874“
+}
+```
 
 Bei erfolgreichem Ausführen der Aktion erhalten Sie folgenden RESPONSE-CODE:
 (siehe Abbildung 3)
@@ -49,9 +107,27 @@ Um einzelne Schülerdaten abzufragen, musst du dem Endpoint „student“ folgen
 ODER
 -	firstname	(Vorname des zu suchenden Schülers)
 -	lastname	(Nachname des zu suchenden Schülers)
+
+` /api/student?studentid=87324 `
+
 bzw.
 
+` /api/student?firstname=Max&lastname=Mustermann `
+
 Bei einer erfolgreichen REQUEST erhalten Sie folgenden RESPONSE im JSON-Format:
+
+```
+{ 
+   „success“:“true“, 
+   „student“: {
+	"studentid":13,
+	"firstname":"Maria",
+	"lastname":"Musterfrau",
+	"classtag":"5A",
+	"average": "2.5"
+   }
+}
+```
 
 ## Liste aller Schüler einer Klasse abfragen (GET-REQUEST):
 Für das Abfragen einer Klassenliste gibt es zwei Möglichkeiten:
@@ -60,6 +136,8 @@ Für das Abfragen einer Klassenliste gibt es zwei Möglichkeiten:
 Verwenden Sie hierfür folgende Attribute in genau der Reinfolge:
 o	list		(Gibt an, dass es sich um eine Liste handelt)
 o	classtag	(Gibt die gesuchte Klasse an)
+
+` /api/student?list&classtag=10A ` 
 
 2.	Sortiert abfragen:
 Verwenden Sie hierfür folgende Attribute in genau der Reinfolge:
@@ -72,13 +150,40 @@ o	firstname	(Sortiert Liste nach Vornamen)
 o	lastname	(Sortiert Liste nach Nachnamen)
 o	average	(Sortiert Liste nach Durchschnittsnote)
 
+` /api/student?list&classtag=10A&sort-by=firstname `
+
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
+
+```
+{ 
+   „success“:“true“,  
+   „studentlist“:[
+	{
+	  "studentid":13,
+	  "firstname":"Maria",
+	  "lastname":"Musterfrau",
+	  "classtag":"5A",
+	  "average": "2.5"
+	},
+	{
+	  "studentid":14,
+	  "firstname":"Max",
+	  "lastname":"Musterfrau",
+	  "classtag":"5A",
+	  "average": "2.5"
+	}
+  ]
+}
+```
  
 # Notendaten:
 Um mit Notendaten zu arbeiten, muss folgender Endpoint angesprochen werden:
+
+` /api/grade `
+
 Der Endpoint erlaubt dir, Notendaten zu erstellen, zu verändern/überarbeiten und zu löschen (siehe jeweiliges Unterkapitel).
 
-Erstellen einer Note (POST-REQUEST):
+## Erstellen einer Note (POST-REQUEST):
 Für das Erstellen einer Note werden folgende Attribute benötigt:
 -	action	(Gibt die auszuführende Aktion an, hier „create“)
 -	student-id	(Die ID des zugehörigen Schülers)
@@ -86,7 +191,20 @@ Für das Erstellen einer Note werden folgende Attribute benötigt:
 -	value		(Der Wert der Note selbst, z.B. 1.0)
 -	weight	(Wertigkeit der Note)
 
-Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-CODE:
+```
+{
+  „action“:“create“,
+  „data“: {
+    „student-id“:“87432“,
+    „grade-type“:“schriftlich“,
+    "subject":"deutsch",
+    „value“:1.0,
+    „weight“:1
+  }
+}
+```
+
+Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-CODE: (siehe Abb. 3)
 
 ## Überarbeiten/Verändern von Notendaten (POST-REQUEST):
 Um Noten zu verändern, brauchen Sie folgende Attribute:
@@ -95,6 +213,19 @@ Um Noten zu verändern, brauchen Sie folgende Attribute:
 -	data-name	(Attribut welches verändert werden soll)
 -	data-value	(Neuen Wert des Attributes)
 
+```
+{
+  „action“:“update“,
+  „grade-id“:“7623“,
+  „data“: [
+    {
+       „data-name“:“grade-type“,
+       „data-value“:“muendlich“,
+     }
+  ]
+}
+```
+
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 
 
@@ -102,20 +233,76 @@ Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 Um Noten aus dem System zu löschen, werden folgende Attribute benötigt:
 -	action	(Auszuführende Aktion, hier „delete“)
 -	grade-id	(ID der zu löschenden Note)
+
+```
+{ 
+  „action“:“delete“,
+  „grade-id“:“93874“
+}
+```
+
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 
 
 ## Bestimme Notendaten abfragen (GET-REQUEST):
 Um eine GET-Request ausführen zu können, müssen Sie an folgenden Endpoint adressieren: 
+
+` /api/grade `
+
 Wollen Sie Daten einer Note abfragen, geben Sie das Attribut „grade-id“ an:
 
+` /api/grade?grade-id=8723 `
+
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
+
+```
+{ 
+   „success“:“true“, 
+   „grade“: {
+	"gradeid":13,
+	"studentid":9823,
+	"gradetype":"schriftlich",
+	"subject":"deutsch",
+	"value":1.0,
+	"weight": 1,
+	„date“:“2022-09-25 00:13:41“
+	}
+}
+```
  
 ## Abfragen aller Noten eines Schülers (GET-REQUEST):
 Um eine Liste aller Noten eines Schülers zu erhalten, müssen folgende Attribute angegeben werden:
 -	student-id		(ID des Schülers)
 
+` /api/grade?student-id=9632 `
+
 Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
+
+```
+{ 
+   „success“:“true“, 
+   „grades“: [
+        {
+	"gradeid":13,
+	"studentid":9823,
+	"gradetype":"schriftlich",
+	"subject":"deutsch",
+	"value":1.0,
+	"weight": 1,
+	„date“:“2022-09-25 00:13:41“
+	},
+        {
+	"gradeid":14,
+	"studentid":9823,
+	"gradetype":"muendlich",
+	"subject":"deutsch",
+	"value":2.0,
+	"weight": 1,
+	„date“:“2022-09-25 00:13:41“
+	}
+  ]
+}
+```
  
 # Fehler und Fehlerbehebung:
 
