@@ -15,26 +15,26 @@ Um Daten abzufragen, benutze die REQUEST-Methode GET, um Daten zu senden benutze
 
 ## Schülerdaten erstellen (POST-REQUEST):
 Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BODY angeben:
--	action 	(Ausführende Aktion, hier „create“)
+-	action 	(Ausführende Aktion, hier "create")
 -	firstname	(Vornamen des Schülers)
 -	lastname	(Nachname des Schülers)
 -	classtag	(Klassenbezeichnung des Schülers) 
 
-```
+```json
 {
-  „action“:“create“,
-  „data“: [
+  "action":"create",
+  "data": [
     {
-       „data-name“:“firstname“,
-       „data-value“:“Max“,
+       "data-name":"firstname",
+       "data-value":"Max",
      },
      {
-       „data-name“:“lastname“,
-       „data-value“:“Mustermann“,
+       "data-name":"lastname",
+       "data-value":"Mustermann",
      },
      {
-       „data-name“:“classtag“,
-       „data-value“:“5A“,
+       "data-name":"classtag",
+       "data-value":"5A",
      }
 
   ]
@@ -42,20 +42,20 @@ Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BOD
 ```
 
 Bei erfolgreichem Erstellen eines Schülers erhält man folgenden RESPONSE:
-```
+```json
 { 
-  „success“:“true“, 
-  „error“: { 
-     „name“:“Successful“, 
-    „message“:“There is no error“, 
-    „errorcode“:“0“ 
+  "success":"true", 
+  "error": { 
+     "name":"Successful", 
+    "message":"There is no error", 
+    "errorcode":"0" 
 }
 ```
 (Abbildung 3)
 
 ## Überarbeiten/Verändern von Schülerdaten (POST-REQUEST):
 Um Schülerdaten verändern zu können, müssen folgende Attribute im REQUEST-BODY angegeben werden:
--	action	(Auszuführende Aktion, hier „update“)
+-	action	(Auszuführende Aktion, hier "update")
 -	student-id	(ID des Schülers)
 -	data-name	(Attribut, welches geändert werden soll)
 -	data-value	(Neuer Wert für das Attribut)
@@ -65,18 +65,18 @@ Folgende Attribute können verändert werden: (Übernehme diese Namen in ‚data
 -	lastname	(Nachname des Schülers)
 -	classtag	(Klassenbezeichnung des Schülers)
 
-```
+```json
 {
-  „action“:“update“,
-  „student-id“:“7623“,
-  „data“: [
+  "action":"update",
+  "student-id":"7623",
+  "data": [
     {
-       „data-name“:“firstname“,
-       „data-value“:“Max“,
+       "data-name":"firstname",
+       "data-value":"Max",
      },
      {
-       „data-name“:“lastname“,
-       „data-value“:“Mustermann“,
+       "data-name":"lastname",
+       "data-value":"Mustermann",
      }
   ]
 }
@@ -87,13 +87,13 @@ Bei erfolgreichem Überarbeiten der Daten in der Datenbank erhalten Sie folgende
 
 ## Löschen von Schülerdaten (POST-REQUEST):
 Um Schülerdaten löschen zu können, werden folgende 2 Attribute benötigt:
--	action	(Auszuführende Aktion, hier „delete“)
+-	action	(Auszuführende Aktion, hier "delete")
 -	student-id	(ID des zu löschenden Schülers)
 
-```
+```json
 { 
-  „action“:“delete“,
-  „student-id“:“93874“
+  "action":"delete",
+  "student-id":"93874"
 }
 ```
 
@@ -102,7 +102,7 @@ Bei erfolgreichem Ausführen der Aktion erhalten Sie folgenden RESPONSE-CODE:
 
 
 ## Einzelne Schülerdaten abfragen (GET-REQUEST):
-Um einzelne Schülerdaten abzufragen, musst du dem Endpoint „student“ folgende Attribute übergeben (ACHTUNG: Bitte halte die unten angegebene Reinfolge ein):
+Um einzelne Schülerdaten abzufragen, musst du dem Endpoint "student" folgende Attribute übergeben (ACHTUNG: Bitte halte die unten angegebene Reinfolge ein):
 -	studentid	(Die ID des zu suchenden Schülers)
 ODER
 -	firstname	(Vorname des zu suchenden Schülers)
@@ -116,10 +116,10 @@ bzw.
 
 Bei einer erfolgreichen REQUEST erhalten Sie folgenden RESPONSE im JSON-Format:
 
-```
+```json
 { 
-   „success“:“true“, 
-   „student“: {
+   "success":"true", 
+   "student": {
 	"studentid":13,
 	"firstname":"Maria",
 	"lastname":"Musterfrau",
@@ -154,10 +154,10 @@ o	average	(Sortiert Liste nach Durchschnittsnote)
 
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
 
-```
+```json
 { 
-   „success“:“true“,  
-   „studentlist“:[
+   "success":"true",  
+   "studentlist":[
 	{
 	  "studentid":13,
 	  "firstname":"Maria",
@@ -185,21 +185,21 @@ Der Endpoint erlaubt dir, Notendaten zu erstellen, zu verändern/überarbeiten u
 
 ## Erstellen einer Note (POST-REQUEST):
 Für das Erstellen einer Note werden folgende Attribute benötigt:
--	action	(Gibt die auszuführende Aktion an, hier „create“)
+-	action	(Gibt die auszuführende Aktion an, hier "create")
 -	student-id	(Die ID des zugehörigen Schülers)
 -	grade-type	(Die Art der Schulaufgabe, z.B. schriftlich)
 -	value		(Der Wert der Note selbst, z.B. 1.0)
 -	weight	(Wertigkeit der Note)
 
-```
+```json
 {
-  „action“:“create“,
-  „data“: {
-    „student-id“:“87432“,
-    „grade-type“:“schriftlich“,
+  "action":"create",
+  "data": {
+    "student-id":"87432",
+    "grade-type":"schriftlich",
     "subject":"deutsch",
-    „value“:1.0,
-    „weight“:1
+    "value":1.0,
+    "weight":1
   }
 }
 ```
@@ -213,14 +213,14 @@ Um Noten zu verändern, brauchen Sie folgende Attribute:
 -	data-name	(Attribut welches verändert werden soll)
 -	data-value	(Neuen Wert des Attributes)
 
-```
+```json
 {
-  „action“:“update“,
-  „grade-id“:“7623“,
-  „data“: [
+  "action":"update",
+  "grade-id":"7623",
+  "data": [
     {
-       „data-name“:“grade-type“,
-       „data-value“:“muendlich“,
+       "data-name":"grade-type",
+       "data-value":"muendlich",
      }
   ]
 }
@@ -231,13 +231,13 @@ Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code: (siehe Abb. 3)
 
 ## Löschen von Notendaten (POST-REQUEST):
 Um Noten aus dem System zu löschen, werden folgende Attribute benötigt:
--	action	(Auszuführende Aktion, hier „delete“)
+-	action	(Auszuführende Aktion, hier "delete")
 -	grade-id	(ID der zu löschenden Note)
 
-```
+```json
 { 
-  „action“:“delete“,
-  „grade-id“:“93874“
+  "action":"delete",
+  "grade-id":"93874"
 }
 ```
 
@@ -249,23 +249,23 @@ Um eine GET-Request ausführen zu können, müssen Sie an folgenden Endpoint adr
 
 ` /api/grade `
 
-Wollen Sie Daten einer Note abfragen, geben Sie das Attribut „grade-id“ an:
+Wollen Sie Daten einer Note abfragen, geben Sie das Attribut "grade-id" an:
 
 ` /api/grade?grade-id=8723 `
 
 Bei erfolgreicher REQUEST erhalten Sie folgenden RESPONSE-Code:
 
-```
+```json
 { 
-   „success“:“true“, 
-   „grade“: {
+   "success":"true", 
+   "grade": {
 	"gradeid":13,
 	"studentid":9823,
 	"gradetype":"schriftlich",
 	"subject":"deutsch",
 	"value":1.0,
 	"weight": 1,
-	„date“:“2022-09-25 00:13:41“
+	"date":"2022-09-25 00:13:41"
 	}
 }
 ```
@@ -278,10 +278,10 @@ Um eine Liste aller Noten eines Schülers zu erhalten, müssen folgende Attribut
 
 Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
 
-```
+```json
 { 
-   „success“:“true“, 
-   „grades“: [
+   "success":"true", 
+   "grades": [
         {
 	"gradeid":13,
 	"studentid":9823,
@@ -289,7 +289,7 @@ Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
 	"subject":"deutsch",
 	"value":1.0,
 	"weight": 1,
-	„date“:“2022-09-25 00:13:41“
+	"date":"2022-09-25 00:13:41"
 	},
         {
 	"gradeid":14,
@@ -298,7 +298,7 @@ Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
 	"subject":"deutsch",
 	"value":2.0,
 	"weight": 1,
-	„date“:“2022-09-25 00:13:41“
+	"date":"2022-09-25 00:13:41"
 	}
   ]
 }
@@ -325,4 +325,3 @@ Folgende Features werden in Zukunft hinzugefügt:
 
 -	API-KEY
 -	Absenzen
-
