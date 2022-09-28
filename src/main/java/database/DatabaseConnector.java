@@ -340,6 +340,7 @@ public class DatabaseConnector {
                 grade.setValue(set.getDouble("value"));
                 grade.setGradeType("grade_type");
                 grades.add(grade);
+
             }
 
             if(grades.size() == 0) return null;
