@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Grade {
 
+    private int ownID;
     private int id;
     private String gradeType;
     private String subject;
@@ -20,6 +21,14 @@ public class Grade {
         this.subject = subject;
         this.value = value;
         this.weight = weight;
+    }
+
+    public int getOwnID() {
+        return ownID;
+    }
+
+    public void setOwnID(int ownID) {
+        this.ownID = ownID;
     }
 
     public int getId() {

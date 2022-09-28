@@ -14,7 +14,8 @@ public enum APIError {
     SAVA_DATABASE_ERROR("Database Error", true, "Couldn\"t save data in database", 6),
     UNKNOWN_DATA_NAME_ERROR("Unknown data-name", true, "JSON contains unknown data-names", 7),
     USER_NOT_FOUND_ERROR("Entry not found Error", true, "Entry doesn\"t exist", 8),
-    INVALID_GET_REQUEST_ERROR("Invalid Get-Request", true, "Your Get-Request is not valid", 9);
+    INVALID_GET_REQUEST_ERROR("Invalid Get-Request", true, "Your Get-Request is not valid", 9),
+    SQL_ERROR("SQL Error", true, "Error while working with database", 10);
 
 
     public String name;

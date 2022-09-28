@@ -1,5 +1,6 @@
 package database;
 
+import com.google.gson.Gson;
 import elements.APIError;
 import elements.Grade;
 import elements.Student;
@@ -17,7 +18,7 @@ public class DatabaseConnector {
     private static final String password = "";
     private static final String database = "student_manager";
 
-    private static Connection connection;
+    public static Connection connection;
 
     public static void connect(){
         System.out.println("[i] Verbindet sich mit Datenbank...");
@@ -25,9 +26,9 @@ public class DatabaseConnector {
         try {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("[i] Erfolgreich mit Datenbank " + database + " verbunden!");
-            System.out.println("[i] Datenbank - Systemcheck wird durchgeführt...");
+            System.out.println("[i] Datenbank - Überprüft Tables");
             setupTables();
-            System.out.println("[i] Datenbank - Systemcheck durchgeführt!");
+            System.out.println("[i] Datenbank - Erfolgreich");
         } catch (SQLException e) {
             System.out.println("Error -> Keine Verbindung zur Datenbank hergestellt");
             e.printStackTrace();
@@ -84,7 +85,7 @@ public class DatabaseConnector {
 
     public static APIError updateStudent(String data_name, String data_value, String student_id){
         try{
-            String sql = "INSERT INTO students SET " + data_name + "='" + data_value + "' WHERE student_id=" + student_id;
+            String sql = "UPDATE students SET " + data_name + "='" + data_value + "' WHERE student_id=" + student_id;
             Statement statement = connection.createStatement();
             statement.execute(sql);
             return APIError.NO_ERROR;
@@ -230,7 +231,6 @@ public class DatabaseConnector {
                 String firstname = resultSet.getString("firstname");
                 String lastname = resultSet.getString("lastname");
                 String sclasstag = resultSet.getString("classtag");
-
                 Student student = new Student(studentid, firstname, lastname, sclasstag);
                 student.setAverage(getAverage(studentid + ""));
                 students.add(student);
@@ -271,6 +271,18 @@ public class DatabaseConnector {
         }
     }
 
+    public static APIError updadeGrade(String gradeid, String attribute, String value){
+        String sql = "UPDATE grades SET " + attribute + "='" + value + "'";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            return APIError.NO_ERROR;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return APIError.SAVA_DATABASE_ERROR;
+        }
+    }
+
     public static APIError deleteGrade(String gradeid){
         try{
             String sql = "DELETE FROM grade WHERE grade=" + gradeid;
@@ -279,6 +291,66 @@ public class DatabaseConnector {
             return APIError.NO_ERROR;
         }catch (Exception e){
             return APIError.UNKNOWN_DATA_NAME_ERROR;
+        }
+    }
+
+    //============ GET REQUEST GRADES ==========
+
+    public static Grade getGradeByID(String gradid){
+        String sql = "SELECT * FROM grades WHERE grade-id='" + gradid + "'";
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet set = statement.executeQuery(sql);
+            Grade grade = new Grade();
+            while(set.next()){
+                Integer grade_id = set.getInt("grade_id");
+                Integer student_id = set.getInt("student_id");
+                String grade_type = set.getString("grade-type");
+                String subject = set.getString("subject");
+                Double value = set.getDouble("value");
+                Integer weight = set.getInt("weight");
+
+                grade.setId(student_id);
+                grade.setOwnID(grade_id);
+                grade.setValue(value);
+                grade.setWeight(weight);
+                grade.setGradeType(grade_type);
+                grade.setSubject(subject);
+            }
+
+            return grade;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public static String getGradesByStudentid(String studentid){
+        ArrayList<Grade> grades = new ArrayList<>();
+        String sql = "SELECT * FROM grades WHERE student_id=" + studentid + "";
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet set = statement.executeQuery(sql);
+
+            while(set.next()){
+                Grade grade = new Grade();
+                grade.setId(set.getInt("student_id"));
+                grade.setOwnID(set.getInt("grade_id"));
+                grade.setSubject(set.getString("subject"));
+                grade.setWeight(set.getInt("weight"));
+                grade.setValue(set.getDouble("value"));
+                grade.setGradeType("grade_type");
+                grades.add(grade);
+            }
+
+            if(grades.size() == 0) return APIError.USER_NOT_FOUND_ERROR.toString();
+            Grade[] returning = new Grade[grades.size()];
+            for(int i = 0; i < grades.size(); i++){
+                returning[i] = grades.get(i);
+            }
+            return new Gson().toJson(returning);
+
+        }catch (Exception e){
+            return APIError.SQL_ERROR.toString();
         }
     }
 }

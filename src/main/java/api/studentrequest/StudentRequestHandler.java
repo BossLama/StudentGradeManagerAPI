@@ -1,5 +1,6 @@
 package api.studentrequest;
 
+import api.systemcheck.Systemchecker;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -20,10 +21,21 @@ public class StudentRequestHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String request_method = exchange.getRequestMethod();
+        String response = "";
+
+        //KEY FOR SYSTEMCHECK
+        if(exchange.getRequestURI().toString().equalsIgnoreCase("/api/student?check")){
+            System.out.println("[i] Systemcheck erhalten - Students");
+            response = "positive - " + exchange.getRequestMethod();
+            exchange.sendResponseHeaders(200, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+            return;
+        }
 
         //SAVE DATA AS STRING FROM REQUEST BODY
         String data = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-        String response = "";
 
         //EXECUTE DIFFERENT HANDLER (POST | GET)
         if(request_method.equalsIgnoreCase("post")){
