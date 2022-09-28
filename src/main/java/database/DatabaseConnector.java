@@ -324,7 +324,7 @@ public class DatabaseConnector {
         }
     }
 
-    public static String getGradesByStudentid(String studentid){
+    public static Grade[] getGradesByStudentid(String studentid){
         ArrayList<Grade> grades = new ArrayList<>();
         String sql = "SELECT * FROM grades WHERE student_id=" + studentid + "";
         try{
@@ -342,15 +342,15 @@ public class DatabaseConnector {
                 grades.add(grade);
             }
 
-            if(grades.size() == 0) return APIError.USER_NOT_FOUND_ERROR.toString();
+            if(grades.size() == 0) return null;
             Grade[] returning = new Grade[grades.size()];
             for(int i = 0; i < grades.size(); i++){
                 returning[i] = grades.get(i);
             }
-            return new Gson().toJson(returning);
+            return returning;
 
         }catch (Exception e){
-            return APIError.SQL_ERROR.toString();
+            return null;
         }
     }
 }

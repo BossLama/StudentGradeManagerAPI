@@ -104,7 +104,9 @@ public class GradeRequestHandler implements HttpHandler {
                     return createResponse("grade", new Gson().toJson(grade));
                 case("student-id"):
                     String studentid = attribute[1];
-                    return DatabaseConnector.getGradesByStudentid(studentid);
+                    Grade[] grades = DatabaseConnector.getGradesByStudentid(studentid);
+                    if(grades == null) return APIError.SQL_ERROR.toString();
+                    return createResponse("grades", new Gson().toJson(grades));
             }
         }
 
