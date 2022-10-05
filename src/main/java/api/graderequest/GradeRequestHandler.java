@@ -65,12 +65,23 @@ public class GradeRequestHandler implements HttpHandler {
             }else if(jsondata.getString("action").equalsIgnoreCase("update")){
                 //UPDATE GRADE
                 String gradeid = jsondata.getString("grade-id");
-                JSONArray datasets = jsondata.getJSONArray("data");
-                for(int i = 0; i < datasets.length(); i++){
-                    String attributename = datasets.getJSONObject(i).getString("data-name");
-                    String attributevalue = datasets.getJSONObject(i).getString("data-value");
-                    APIError error = DatabaseConnector.updadeGrade(gradeid, attributename, attributevalue);
-                    if(!error.equals(APIError.NO_ERROR)) return error.toString();
+                //TODO: UPDATE BY NEW FORMAT
+                JSONObject datas = jsondata.getJSONObject("data");
+                Grade grades = new Grade();
+                if(datas.has("student-id")){
+                    DatabaseConnector.updadeGrade(gradeid, "student-id", datas.getString("student-id"));
+                }
+                if(datas.has("grade-type")){
+                    DatabaseConnector.updadeGrade(gradeid, "grade-type", datas.getString("grade-type"));
+                }
+                if(datas.has("subject")){
+                    DatabaseConnector.updadeGrade(gradeid, "subject", datas.getString("subject"));
+                }
+                if(datas.has("value")){
+                    DatabaseConnector.updadeGrade(gradeid, "value", datas.getString("value"));
+                }
+                if(datas.has("weight")){
+                    DatabaseConnector.updadeGrade(gradeid, "weight", datas.getString("weight"));
                 }
                 return APIError.NO_ERROR.toString();
             }else if(jsondata.getString("action").equalsIgnoreCase("delete")){

@@ -7,7 +7,9 @@ import java.net.http.HttpResponse;
 public class ClientStart {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        createGrade();
+        createStudent("Jonas", "Riemer", "12Q4");
+
+        updateStudent("1", "Jonas", "Mustermann", "12Q5");
     }
 
 
@@ -26,12 +28,19 @@ public class ClientStart {
         }
     }
 
-    public static void createGrade(){
+    public static void createStudent(String firstname, String lastname, String classtag){
        try{
            HttpClient client = HttpClient.newHttpClient();
            HttpRequest request = HttpRequest.newBuilder()
-                   .uri(URI.create("http://localhost:8974/api/grade"))
-                   .POST(HttpRequest.BodyPublishers.ofString("{\"hello\":\"world\"}"))
+                   .uri(URI.create("http://localhost:8974/api/student"))
+                   .POST(HttpRequest.BodyPublishers.ofString("{" +
+                           "\"action\":\"create\"," +
+                           "\"data\": {" +
+                           "    \"firstname\": \"" + firstname + "\"," +
+                           "    \"lastname\": \"" + lastname + "\"," +
+                           "    \"classtag\": \"" + classtag + "\"," +
+                           "  }" +
+                           "}"))
                    .build();
 
            HttpResponse<String> response = client.send(request,
@@ -41,6 +50,31 @@ public class ClientStart {
        }catch (Exception e){
            System.out.println("Fehler -> " + e.getMessage());
        }
+    }
+
+    public static void updateStudent(String student_id, String firstname, String lastname, String classtag){
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8974/api/student"))
+                    .POST(HttpRequest.BodyPublishers.ofString("{" +
+                            "\"action\":\"update\"," +
+                            "\"student-id\":\"" + student_id + "\"," +
+                            "\"data\": {" +
+                            "    \"firstname\": \"" + firstname + "\"," +
+                            "    \"lastname\": \"" + lastname + "\"," +
+                            "    \"classtag\": \"" + classtag + "\"," +
+                            " }" +
+                            "}"))
+                    .build();
+
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+
+            System.out.println(response.body());
+        }catch (Exception e){
+            System.out.println("Fehler -> " + e.getMessage());
+        }
     }
 
     public static void getClasslistSorted(String classlist, String sorted){

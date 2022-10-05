@@ -64,18 +64,16 @@ public class StudentRequestHandler implements HttpHandler {
             if(jsonObject.getString("action").equalsIgnoreCase("create")){
                 //CREATE STUDENT
                 //GET DATA VALUES
-                JSONArray datas = new JSONArray(jsonObject.getJSONArray("data"));
-                //CHECK FOR 3 DATAS
-                if(datas.length() != 3) return APIError.WRONG_JSON_ERROR.toString();
-                //SAFE DATA IN STUDENT OBJECT
+                JSONObject datas = jsonObject.getJSONObject("data");
+
+                String firstname = datas.getString("firstname");
+                String lastname = datas.getString("lastname");
+                String classtag = datas.getString("classtag");
+
                 Student student = new Student();
-                for(int i = 0; i < datas.length(); i++){
-                    JSONObject current = datas.getJSONObject(i);
-                    String parameter = current.getString("data-name");
-                    if(parameter.equalsIgnoreCase("firstname")) student.setFirstname(current.getString("data-value"));
-                    if(parameter.equalsIgnoreCase("lastname")) student.setLastname(current.getString("data-value"));
-                    if(parameter.equalsIgnoreCase("classtag")) student.setClasstag(current.getString("data-value"));
-                }
+                student.setFirstname(firstname);
+                student.setLastname(lastname);
+                student.setClasstag(classtag);
                 //CHECK IF DATA IS SAFE
                 if(!student.isDataSet()) return APIError.WRONG_JSON_ERROR.toString();
                 //SAVES TO DATABASE
@@ -84,15 +82,20 @@ public class StudentRequestHandler implements HttpHandler {
             }else if(jsonObject.getString("action").equalsIgnoreCase("update")){
                 //UPDATE STUDENT
                 String studentid = jsonObject.getString("student-id");
-                //CHANCE DATA IN DATABASE
-                JSONArray datapack = jsonObject.getJSONArray("data");
-                response = new StringBuilder();
-                for(int i = 0; i < datapack.length(); i++){
-                    String data_name = datapack.getJSONObject(i).getString("data-name");
-                    String data_value = datapack.getJSONObject(i).getString("data-value");
-                    response.append(DatabaseConnector.updateStudent(data_name, data_value, studentid).toString());
+                //GET DATA
+                JSONObject datas = jsonObject.getJSONObject("data");
+                int error = 0;
+                if(datas.has("firstname")){
+                    DatabaseConnector.updateStudent("firstname", datas.getString("firstname"), studentid);
                 }
-                return response.toString();
+                if(datas.has("lastname")){
+                    DatabaseConnector.updateStudent("lastname", datas.getString("lastname"), studentid);
+                }
+                if(datas.has("classtag")){
+                    DatabaseConnector.updateStudent("classtag", datas.getString("classtag"), studentid);
+                }
+                return APIError.NO_ERROR.toString();
+
             }else if(jsonObject.getString("action").equalsIgnoreCase("delete")){
                 //DELETE STUDENT BY ID
                 String student_id = jsonObject.getString("student-id");
