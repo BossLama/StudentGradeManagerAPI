@@ -92,6 +92,14 @@ public class DatabaseConnector {
     }
 
     public static APIError updateStudent(String data_name, String data_value, String student_id){
+        data_name = data_name.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
+        data_value = data_value.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         try{
             String sql = "UPDATE students SET " + data_name + "='" + data_value + "' WHERE student_id=" + student_id;
             Statement statement = connection.createStatement();
@@ -103,6 +111,10 @@ public class DatabaseConnector {
     }
 
     public static APIError deleteStudent(String student_id){
+        student_id = student_id.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         try{
             String sql = "DELETE FROM students WHERE student_id=" + student_id;
             Statement statement = connection.createStatement();
@@ -117,6 +129,10 @@ public class DatabaseConnector {
     //============ GET - STUDENT - METHODS ============
 
     public static Student getStudentByID(String student_id){
+        student_id = student_id.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         Student student = new Student();
         System.out.println("Search for id " + student_id);
         String sql = "SELECT * FROM students WHERE student_id='" + student_id + "'";
@@ -143,6 +159,14 @@ public class DatabaseConnector {
     }
 
     public static Student getStudentByName(String firstname, String lastname){
+        firstname = firstname.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
+        lastname = lastname.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         String sql = "SELECT * FROM students WHERE firstname='" + firstname + "' AND lastname='" + lastname + "'";
         Student student = new Student();
         try {
@@ -169,6 +193,10 @@ public class DatabaseConnector {
 
 
     private static double getAverage(String student_id){
+        student_id = student_id.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         String sql = "SELECT * FROM grades WHERE student_id='" + student_id + "'";
         try{
             Statement statement = connection.createStatement();
@@ -194,6 +222,10 @@ public class DatabaseConnector {
     }
 
     public static Student[] getStudentsByClassList(String classtag){
+        classtag = classtag.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         try {
             String sql = "SELECT * FROM students WHERE classtag='" + classtag + "'";
             Statement statement = connection.createStatement();
@@ -222,6 +254,14 @@ public class DatabaseConnector {
     }
 
     public static Student[] getStudentsByClassListSorted(String classtag, String sortid){
+        classtag = classtag.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
+        sortid = sortid.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         try {
             String sql = "";
             if(!sortid.equalsIgnoreCase("average")){
@@ -281,6 +321,18 @@ public class DatabaseConnector {
     }
 
     public static APIError updadeGrade(String gradeid, String attribute, String value){
+        gradeid = gradeid.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
+        attribute = attribute.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
+        value = value.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         String sql = "UPDATE grades SET " + attribute + "='" + value + "'";
         try {
             Statement statement = connection.createStatement();
@@ -293,6 +345,10 @@ public class DatabaseConnector {
     }
 
     public static APIError deleteGrade(String gradeid){
+        gradeid = gradeid.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         try{
             String sql = "DELETE FROM grade WHERE grade=" + gradeid;
             Statement statement = connection.createStatement();
@@ -306,6 +362,10 @@ public class DatabaseConnector {
     //============ GET REQUEST GRADES ==========
 
     public static Grade getGradeByID(String gradid){
+        gradid = gradid.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         String sql = "SELECT * FROM grades WHERE grade-id='" + gradid + "'";
         try{
             Statement statement = connection.createStatement();
@@ -334,6 +394,10 @@ public class DatabaseConnector {
     }
 
     public static Grade[] getGradesByStudentid(String studentid){
+        studentid = studentid.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
         ArrayList<Grade> grades = new ArrayList<>();
         String sql = "SELECT * FROM grades WHERE student_id=" + studentid + "";
         try{

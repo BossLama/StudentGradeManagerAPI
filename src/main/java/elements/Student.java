@@ -49,7 +49,10 @@ public class Student implements Comparable<Student> {
     }
 
     public String getFirstname() {
-        return firstname;
+        return firstname.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
     }
 
     public void setFirstname(String firstname) {
@@ -57,7 +60,10 @@ public class Student implements Comparable<Student> {
     }
 
     public String getLastname() {
-        return lastname;
+        return lastname.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
     }
 
     public void setLastname(String lastname) {
@@ -65,7 +71,10 @@ public class Student implements Comparable<Student> {
     }
 
     public String getClasstag() {
-        return classtag;
+        return classtag.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
     }
 
     public void setClasstag(String classtag) {

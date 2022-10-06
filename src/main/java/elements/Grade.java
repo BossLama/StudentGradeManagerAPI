@@ -40,7 +40,10 @@ public class Grade {
     }
 
     public String getGradeType() {
-        return gradeType;
+        return gradeType.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
     }
 
     public void setGradeType(String gradeType) {
@@ -48,7 +51,10 @@ public class Grade {
     }
 
     public String getSubject() {
-        return subject;
+        return subject.replace("&", "").
+                replace("=", "").
+                replace("!", "").
+                replace(";", "");
     }
 
     public void setSubject(String subject) {
