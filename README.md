@@ -5,10 +5,11 @@ API to manage students and their grades
 Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten verwalten. Kommuniziert wird dafür über HTTP im JSON-Format. Bitte halten Sie die in Beispielen gegebenen Formatierungen ein, um keine Fehler zu erhalten.
 Der Standard-Port für die API ist 8974.
 Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler verursachen.
-#### Hinweis: 
-Passwort für die API -> ``` GradeAPI2022 ```
+
+
 
 # Übersicht
+- [Setup](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#Setup)
 - [Schülerdaten](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#sch%C3%BClerdaten)
 	- [Schülerdaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#sch%C3%BClerdaten-erstellen-post-request)
 	- [Schülerdaten überarbeiten / verändern](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#%C3%BCberarbeitenver%C3%A4ndern-von-sch%C3%BClerdaten-post-request)
@@ -23,6 +24,26 @@ Passwort für die API -> ``` GradeAPI2022 ```
 	- [Notendaten abfragen (Notenliste eines Schülers)](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#abfragen-aller-noten-eines-sch%C3%BClers-get-request)
 - [Fehlercodes und Erklärung](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#fehler-und-fehlerbehebung)
 - [Features in Zukunft](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#features-in-zukunft)
+
+# Setup
+Starten Sie das Programm einmal. Es wird eine neue Configdatei erstellt. Diese befindet sich hier:
+` config/config-database.json `
+Das Programm beendet sich nun automatisch. Bearbeiten Sie nun die Datenbank-Login-Daten und setzen Sie "isSetup" auf "true".
+Die Datei sollte dann so aussehen:
+```json
+{
+  "map":{
+    "database":"student_manager",
+    "password":"",
+    "port":"3306",
+    "host":"localhost",
+    "username":"root",
+    "isSetup":"true"
+  }
+}
+```
+Starten Sie nun das Programm erneut. Wenn alles funktioniert hat, startet der Server auf dem Port ` 8974 `
+Diesen können Sie anschließend in der ` config/config-server.json ` Datei ändern.
 
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
@@ -325,4 +346,4 @@ Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
 Folgende Features werden in Zukunft hinzugefügt:
 
 -	API-KEY
--	Config.json File (Einstellen von Datenbankverbindungen etc.)
+-	~~Config.json File (Einstellen von Datenbankverbindungen etc.)~~ (Implementiert seit 06.10.2022)
