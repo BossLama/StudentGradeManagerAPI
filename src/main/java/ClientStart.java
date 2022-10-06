@@ -8,7 +8,7 @@ public class ClientStart {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         //createStudent("Jonas", "Riemer", "12Q4");
-        createGrade("3", "schulaufgabe", "deutsch", 2.5, 1);
+        createGrade("3", "muendlich", "geo", 3.0, 1);
     }
 
 
@@ -55,7 +55,7 @@ public class ClientStart {
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8974/api/grade"))
+                    .uri(URI.create("http://localhost/api/grade"))
                     .POST(HttpRequest.BodyPublishers.ofString("{" +
                             "\"action\":\"create\"," +
                             "\"data\": {" +
@@ -81,7 +81,7 @@ public class ClientStart {
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8974/api/student"))
+                    .uri(URI.create("http://localhost/api/student"))
                     .POST(HttpRequest.BodyPublishers.ofString("{" +
                             "\"action\":\"update\"," +
                             "\"student-id\":\"" + student_id + "\"," +
@@ -106,7 +106,7 @@ public class ClientStart {
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8974/api/student?list=true&classtag=" + classlist + "&sort-by=" + sorted))
+                    .uri(URI.create("http://localhost/api/student?list=true&classtag=" + classlist + "&sort-by=" + sorted))
                     .GET()
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

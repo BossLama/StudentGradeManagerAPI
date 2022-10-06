@@ -1,5 +1,6 @@
 package api;
 
+import api.configuration.ConfigHandler;
 import api.graderequest.GradeRequestHandler;
 import api.studentrequest.StudentRequestHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -10,9 +11,11 @@ import java.net.InetSocketAddress;
 public class APIServer{
 
     private static HttpServer server;
-    private static final int PORT = 8974;
+    public static ConfigHandler serverConfig = new ConfigHandler("config-server");
+    public static int PORT;
 
     public static int start(){
+        PORT = serverConfig.getInteger("port");
         System.out.println("[i] Startet Server auf Port: " + PORT);
         try {
             server = HttpServer.create(new InetSocketAddress(PORT), 0);
@@ -27,4 +30,5 @@ public class APIServer{
         }
         return 0;
     }
+
 }

@@ -1,5 +1,6 @@
 package database;
 
+import api.configuration.ConfigHandler;
 import com.google.gson.Gson;
 import elements.APIError;
 import elements.Grade;
@@ -12,15 +13,22 @@ import java.util.HashMap;
 
 public class DatabaseConnector {
 
-    private static final String host = "localhost";
-    private static final int port = 3306;
-    private static final String username = "root";
-    private static final String password = "";
-    private static final String database = "student_manager";
+    public static ConfigHandler databaseConfig = new ConfigHandler("config-database");
+
+    private static String host;
+    private static int port;
+    private static String username;
+    private static String password;
+    private static String database;
 
     public static Connection connection;
 
     public static void connect(){
+        host = databaseConfig.get("host");
+        port = databaseConfig.getInteger("port");
+        username = databaseConfig.get("username");
+        password = databaseConfig.get("password");
+        database = databaseConfig.get("database");
         System.out.println("[i] Verbindet sich mit Datenbank...");
         String url = "jdbc:mysql://"+ host +":"+ port +"/"+ database +"?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Berlin";
         try {
