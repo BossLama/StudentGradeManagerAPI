@@ -23,21 +23,11 @@ Um einen neuen Schüler im System einzutragen, musst du folgendes im REQUEST-BOD
 ```json
 {
   "action":"create",
-  "data": [
-    {
-       "data-name":"firstname",
-       "data-value":"Max",
-     },
-     {
-       "data-name":"lastname",
-       "data-value":"Mustermann",
-     },
-     {
-       "data-name":"classtag",
-       "data-value":"5A",
-     }
-
-  ]
+  "data": {
+  	"firstname":"Max",
+	"lastname":"Mustermann",
+	"classtag":"5A"
+  }
 } 
 ```
 
@@ -69,16 +59,10 @@ Folgende Attribute können verändert werden: (Übernehme diese Namen in ‚data
 {
   "action":"update",
   "student-id":"7623",
-  "data": [
-    {
-       "data-name":"firstname",
-       "data-value":"Max",
-     },
-     {
-       "data-name":"lastname",
-       "data-value":"Mustermann",
-     }
-  ]
+  "data": {
+  	"firstname":"Max",
+	"classtag":"6A"
+  }
 }
 ```
 
@@ -217,12 +201,10 @@ Um Noten zu verändern, brauchen Sie folgende Attribute:
 {
   "action":"update",
   "grade-id":"7623",
-  "data": [
-    {
-       "data-name":"grade-type",
-       "data-value":"muendlich",
-     }
-  ]
+  "data": {
+  	"grade-type":"muendlich",
+	"subject":"mathe"
+  }
 }
 ```
 
