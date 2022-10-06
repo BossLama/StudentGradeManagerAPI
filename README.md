@@ -6,6 +6,22 @@ Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten ve
 Der Standard-Port für die API ist 8974.
 Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler verursachen.
 
+# Übersicht
+- Schülerdaten
+	- Schülerdaten erstellen
+	- Schülerdaten überarbeiten / verändern
+	- Schülerdaten löschen
+	- Schülerdaten abfragen (einzelner Schüler)
+	- Schülerdaten abfragen (Klassenliste)
+- Notendaten
+	- Notendaten erstellen
+	- Notendaten überarbeiten / verändern
+	- Notendaten löschen
+	- Notendaten abfragen (anhand Notenid)
+	- Notendaten abfragen (Notenliste eines Schülers)
+- Fehlercodes und Erklärung
+- Features in Zukunft
+
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
 
@@ -288,17 +304,18 @@ Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
  
 # Fehler und Fehlerbehebung:
 
-CODE	ERROR-NAME	URSACHE	BEHEBUNG
-0	No-Error	Erfolgreiche Request	KEINE
-1	Syntax - Error	Derzeit keine	KEINE
-2	API KEY - Error	Derzeit keine	KEINE
-3	Unknown Request Type	Keine Get oder Post Request	Setzte Request-Method auf POST oder GET
-4	Wrong JSON Format	Falsches Format in JSON	Überprüfe Format in Documentation
-5	Unset Action Error	Kein Actionattribut	Gib in deiner JSON das Attribut action an
-6	Save Database Error	Fehler beim Senden an Datenbank	Überprüfe die Logindaten für die Datenbank
-7	Unknown Dataname Error	Unbekanntes Dataname Attribut in JSON	Überprüfe, welche Datanames du verwenden darfst
-8	Entry not found Error	Kein Element gefunden, welches gesucht wird	Überprüfe Angaben wie studentid oder gradeid
-9	Invalid Get Request	Falsche Get-Request	Überprüfe Attribute und deren Reinfolge
+| CODE	| ERROR-NAME | URSACHE | BEHEBUNG |
+| ------------- | ------------- | ------------- | ------------- |
+| 0 | No-Error 			| Erfolgreiche Request 		| KEINE |
+| 1 | Syntax - Error 		| Derzeit keine			| KEINE |
+| 2 | API KEY - Error		| Derzeit keine			| KEINE |
+| 3 | Unknown Request Type	| Keine Get oder Post Request	| Setzte Request-Method auf POST oder GET |
+| 4 | Wrong JSON Format		| Falsches Format in JSON	| Überprüfe Format in Documentation |
+| 5 | Unset Action Error	| Kein Actionattribut		| Gib in deiner JSON das Attribut action an |
+| 6 | Save Database Error	| Fehler beim Senden an Datenbank | Überprüfe die Logindaten für die Datenbank |
+| 7 | Unknown Dataname Error	| Unbekanntes Dataname Attribut in JSON | Überprüfe, welche Datanames du verwenden darfst |
+| 8 | Entry not found Error	| Kein Element gefunden, welches gesucht wird |	Überprüfe Angaben wie studentid oder gradeid |
+| 9 | Invalid Get Request	| Falsche Get-Request		| Überprüfe Attribute und deren Reinfolge |
 			
 			
 
