@@ -5,23 +5,24 @@ API to manage students and their grades
 Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten verwalten. Kommuniziert wird dafür über HTTP im JSON-Format. Bitte halten Sie die in Beispielen gegebenen Formatierungen ein, um keine Fehler zu erhalten.
 Der Standard-Port für die API ist 8974.
 Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler verursachen.
-### Hinweis: Passwort für die API -> GradeAPI2022
+#### Hinweis: 
+Passwort für die API -> ``` GradeAPI2022 ```
 
 # Übersicht
-- Schülerdaten
-	- Schülerdaten erstellen
-	- Schülerdaten überarbeiten / verändern
-	- Schülerdaten löschen
-	- Schülerdaten abfragen (einzelner Schüler)
-	- Schülerdaten abfragen (Klassenliste)
-- Notendaten
+- [Schülerdaten](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#sch%C3%BClerdaten)
+	- [Schülerdaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#sch%C3%BClerdaten-erstellen-post-request)
+	- [Schülerdaten überarbeiten / verändern](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#%C3%BCberarbeitenver%C3%A4ndern-von-sch%C3%BClerdaten-post-request)
+	- [Schülerdaten löschen](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#l%C3%B6schen-von-sch%C3%BClerdaten-post-request)
+	- [Schülerdaten abfragen (einzelner Schüler)](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#einzelne-sch%C3%BClerdaten-abfragen-get-request)
+	- [Schülerdaten abfragen (Klassenliste)](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#liste-aller-sch%C3%BCler-einer-klasse-abfragen-get-request)
+- [Notendaten](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#notendaten)
 	- Notendaten erstellen
 	- Notendaten überarbeiten / verändern
 	- Notendaten löschen
 	- Notendaten abfragen (anhand Notenid)
 	- Notendaten abfragen (Notenliste eines Schülers)
-- Fehlercodes und Erklärung
-- Features in Zukunft
+- [Fehlercodes und Erklärung](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#fehler-und-fehlerbehebung)
+- [Features in Zukunft](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#features-in-zukunft)
 
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
