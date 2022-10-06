@@ -1,5 +1,12 @@
+ _ _ _ _ _
+<p align="center">
+	<a href="https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README_en.md">english</a> |
+	<a href="https://riemerjonas.de">website</a>
+</p>
+
+ _ _ _ _ _
 # StudentGradeManagerAPI
-API to manage students and their grades
+API um Notendaten von Schülern zu verwalten!
 
 # Vorwort:
 Die Student-Grades-Manager API (kurz SGMA) soll Schülerdaten und deren Noten verwalten. Kommuniziert wird dafür über HTTP im JSON-Format. Bitte halten Sie die in Beispielen gegebenen Formatierungen ein, um keine Fehler zu erhalten.
