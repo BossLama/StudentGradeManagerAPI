@@ -346,4 +346,5 @@ Bei erfolgreicher REQUEST erhalten Sie folgende Antwort:
 Folgende Features werden in Zukunft hinzugefügt:
 
 -	API-KEY
--	~~Config.json File (Einstellen von Datenbankverbindungen etc.)~~ (Implementiert seit 06.10.2022)
+-	~~Config.json File (Einstellen von Datenbankverbindungen etc.)~~ (Implementiert seit 06.10.2022 - v1.3)
+-	~~Prevent sql-insection~~ (Implementiert seit 06.10.2022 - v1.3.1)
