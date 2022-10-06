@@ -61,11 +61,11 @@ public class GradeRequestHandler implements HttpHandler {
                 Integer weight = jsondata.getInt("weight");
                 //SAVE GRADE
                 Grade grade = new Grade(Integer.parseInt(studentid), gradetype, subject, value, weight);
-                DatabaseConnector.createGrade(grade);
+                return  DatabaseConnector.createGrade(grade).toString();
             }else if(jsondata.getString("action").equalsIgnoreCase("update")){
                 //UPDATE GRADE
                 String gradeid = jsondata.getString("grade-id");
-                //TODO: UPDATE BY NEW FORMAT
+                //GET DATA VALUES AND SEND TO DATABASE
                 JSONObject datas = jsondata.getJSONObject("data");
                 Grade grades = new Grade();
                 if(datas.has("student-id")){
@@ -92,7 +92,6 @@ public class GradeRequestHandler implements HttpHandler {
         }catch (Exception e){
             return APIError.WRONG_JSON_ERROR.toString();
         }
-        return "";
     }
 
     public static String handleGet(String data, HttpExchange exchange){

@@ -254,13 +254,14 @@ public class DatabaseConnector {
     //=========== POST GRADE METHODS ========
 
     public static APIError createGrade(Grade grade){
-        String sql = "INSERT INTO students (student_id, grade_type, subject, value, weight) VALUES (" +
+        String sql = "INSERT INTO grades (student_id, grade_type, subject, value, weight) VALUES (" +
                 "" + grade.getId() +","+
                 "'" + grade.getGradeType() +"',"+
                 "'" + grade.getSubject() +"',"+
                 "" + grade.getValue() +","+
-                "" + grade.getWeight() +","+
+                "" + grade.getWeight() +""+
                 ")";
+        System.out.println(sql);
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);

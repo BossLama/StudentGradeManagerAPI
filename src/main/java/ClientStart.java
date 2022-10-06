@@ -7,9 +7,8 @@ import java.net.http.HttpResponse;
 public class ClientStart {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        createStudent("Jonas", "Riemer", "12Q4");
-
-        updateStudent("1", "Jonas", "Mustermann", "12Q5");
+        //createStudent("Jonas", "Riemer", "12Q4");
+        createGrade("3", "schulaufgabe", "deutsch", 2.5, 1);
     }
 
 
@@ -50,6 +49,32 @@ public class ClientStart {
        }catch (Exception e){
            System.out.println("Fehler -> " + e.getMessage());
        }
+    }
+
+    public static void createGrade(String student_id, String gradetype, String subject, Double value, Integer weight){
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8974/api/grade"))
+                    .POST(HttpRequest.BodyPublishers.ofString("{" +
+                            "\"action\":\"create\"," +
+                            "\"data\": {" +
+                            "    \"student-id\": \"" + student_id + "\"," +
+                            "    \"grade-type\": \"" + gradetype + "\"," +
+                            "    \"subject\": \"" + subject + "\"," +
+                            "    \"value\": \"" + value + "\"," +
+                            "    \"weight\":\"" + weight + "\"" +
+                            "  }" +
+                            "}"))
+                    .build();
+
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+
+            System.out.println(response.body());
+        }catch (Exception e){
+            System.out.println("Fehler -> " + e.getMessage());
+        }
     }
 
     public static void updateStudent(String student_id, String firstname, String lastname, String classtag){
