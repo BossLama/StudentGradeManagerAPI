@@ -13,7 +13,7 @@ Passwort für die API -> ``` GradeAPI2022 ```
 	- [Schülerdaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#sch%C3%BClerdaten-erstellen-post-request)
 	- [Schülerdaten überarbeiten / verändern](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#%C3%BCberarbeitenver%C3%A4ndern-von-sch%C3%BClerdaten-post-request)
 	- [Schülerdaten löschen](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#l%C3%B6schen-von-sch%C3%BClerdaten-post-request)
-	- [Schülerdaten abfragen (https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#einzelne-sch%C3%BClerdaten-abfragen-get-request)
+	- [Schülerdaten abfragen](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#einzelne-sch%C3%BClerdaten-abfragen-get-request)
 	- [Schülerdaten abfragen (Klassenliste)](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#liste-aller-sch%C3%BCler-einer-klasse-abfragen-get-request)
 - [Notendaten](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#notendaten)
 	- [Notendaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/blob/master/README.md#erstellen-einer-note-post-request)
