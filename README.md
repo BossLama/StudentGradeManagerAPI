@@ -9,20 +9,20 @@ Hinweis: Nicht einhalten der Reinfolge beim angeben von Attributen kann Fehler v
 Passwort für die API -> ``` GradeAPI2022 ```
 
 # Übersicht
-- [Schülerdaten](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#sch%C3%BClerdaten)
-	- [Schülerdaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#sch%C3%BClerdaten-erstellen-post-request)
-	- [Schülerdaten überarbeiten / verändern](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#%C3%BCberarbeitenver%C3%A4ndern-von-sch%C3%BClerdaten-post-request)
-	- [Schülerdaten löschen](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#l%C3%B6schen-von-sch%C3%BClerdaten-post-request)
-	- [Schülerdaten abfragen (einzelner Schüler)](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#einzelne-sch%C3%BClerdaten-abfragen-get-request)
-	- [Schülerdaten abfragen (Klassenliste)](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#liste-aller-sch%C3%BCler-einer-klasse-abfragen-get-request)
-- [Notendaten](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#notendaten)
+- [Schülerdaten](https://github.com/BossLama/StudentGradeManagerAPI/README.md#sch%C3%BClerdaten)
+	- [Schülerdaten erstellen](https://github.com/BossLama/StudentGradeManagerAPI/README.md#sch%C3%BClerdaten-erstellen-post-request)
+	- [Schülerdaten überarbeiten / verändern](https://github.com/BossLama/StudentGradeManagerAPI/README.md#%C3%BCberarbeitenver%C3%A4ndern-von-sch%C3%BClerdaten-post-request)
+	- [Schülerdaten löschen](https://github.com/BossLama/StudentGradeManagerAPI/README.md#l%C3%B6schen-von-sch%C3%BClerdaten-post-request)
+	- [Schülerdaten abfragen (einzelner Schüler)](https://github.com/BossLama/StudentGradeManagerAPI/README.md#einzelne-sch%C3%BClerdaten-abfragen-get-request)
+	- [Schülerdaten abfragen (Klassenliste)](https://github.com/BossLama/StudentGradeManagerAPI/README.md#liste-aller-sch%C3%BCler-einer-klasse-abfragen-get-request)
+- [Notendaten](https://github.com/BossLama/StudentGradeManagerAPI/README.md#notendaten)
 	- Notendaten erstellen
 	- Notendaten überarbeiten / verändern
 	- Notendaten löschen
 	- Notendaten abfragen (anhand Notenid)
 	- Notendaten abfragen (Notenliste eines Schülers)
-- [Fehlercodes und Erklärung](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#fehler-und-fehlerbehebung)
-- [Features in Zukunft](https://github.com/BossLama/StudentGradeManagerAPI/edit/master/README.md#features-in-zukunft)
+- [Fehlercodes und Erklärung](https://github.com/BossLama/StudentGradeManagerAPI/README.md#fehler-und-fehlerbehebung)
+- [Features in Zukunft](https://github.com/BossLama/StudentGradeManagerAPI/README.md#features-in-zukunft)
 
 # Schülerdaten:
 Um mit Schülerdaten arbeiten zu können muss folgender Endpoint angesprochen werden:
